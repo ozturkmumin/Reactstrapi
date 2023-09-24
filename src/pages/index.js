@@ -1,6 +1,6 @@
 import Homepage from "./Homepage";
-import BlogContent from "./BlogContent";
+import BlogContentPage from "./BlogContentPage";
 export {
     Homepage,
-    BlogContent
+    BlogContentPage
 }
