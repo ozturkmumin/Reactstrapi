@@ -1,5 +1,5 @@
 import React from "react";
-import { NavSt , Blogs } from "../components";
+import { NavSt , Blogs, BlogContents } from "../components";
 
 
 const BlogContentPage = ()=>{

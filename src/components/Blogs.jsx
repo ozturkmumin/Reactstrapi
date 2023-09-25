@@ -39,7 +39,7 @@ function Blogs() {
       <Row className="justify-content-center align-items-center">
         {blogs.map((blog) => (
           <Col lg={4} sm={6} className="m-lg-0 m-3" key={blog.id}>
-            <Link to={`/blogs/${blog.id}`}>
+            <Link to={`/blog/${blog.id}`}>
               <Card style={{ width: "18rem" }}>
                 <Card.Img variant="top" src={blog.contentImg} alt={blog.alt} />
                 <Card.Body>
