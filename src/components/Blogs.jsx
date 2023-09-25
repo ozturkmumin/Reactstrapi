@@ -35,6 +35,7 @@ function Blogs() {
 
 
   return (
+    //birden fazla card oluşturmamak ve tekrar etmemesi için map methodu ile arrayden cardları oluşturdum.
     <Container className="pt-5">
       <Row className="justify-content-center align-items-center">
         {blogs.map((blog) => (

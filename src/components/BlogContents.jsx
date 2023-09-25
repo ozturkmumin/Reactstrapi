@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
-
+// Blogları idsi ile birlikte burada oluşturdum
 function BlogContents() {
   const blogs = [
     {
@@ -30,9 +30,9 @@ function BlogContents() {
   ];
   const { id } = useParams();
 
-
+// useparams ile URL i aldım 
   const blog = blogs.find((blog) => blog.id.toString() === id.toString());
-
+// id si denk gelen sayfayı bulmasını sağladım
   return (
     <div>
       <div className="container pt-5">
