@@ -14,7 +14,7 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Homepage />}></Route>
+        <Route path="/" element={<Homepage blogs={data?data:""}/>}></Route>
         <Route path="/blogs" element={<BlogContentPage />}></Route>
         <Route path="/blog/:id" element={<BlogContents />}></Route>
       </Routes>
