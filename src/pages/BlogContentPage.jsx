@@ -2,12 +2,14 @@ import React from "react";
 import { NavSt , Blogs, BlogContents } from "../components";
 
 
-const BlogContentPage = ()=>{
+const BlogContentPage = ({blogs})=>{
+  console.log("Blog content page");
+  console.log(blogs);
   return (
     <div>
       {" "}
       <NavSt />
-      <Blogs />
+      <BlogContents />
     </div>
   );
 }

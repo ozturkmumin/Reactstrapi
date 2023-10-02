@@ -15,8 +15,7 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<Homepage blogs={data?data:""}/>}></Route>
-        <Route path="/blogs" element={<BlogContentPage />}></Route>
-        <Route path="/blog/:id" element={<BlogContents />}></Route>
+        <Route path="/blog/:id" element={<BlogContentPage blogs={data?data:""}/>}></Route>
       </Routes>
     </>
   );

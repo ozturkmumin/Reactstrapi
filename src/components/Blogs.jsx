@@ -5,8 +5,6 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
 function Blogs({ blogs }) {
-  console.log("BlogPage");
-  console.log(blogs);
   const blogs1 = [
     {
       id: 1,
@@ -40,7 +38,7 @@ function Blogs({ blogs }) {
           <Col lg={4} sm={6} className="m-lg-0 m-3" key={blog.id}>
             <Link to={`/blog/${blog.id}`}>
               <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={`https://localhost:1337${blog.attributes.CoverImg.data[0].attributes.url}`} alt={blog.alt} />
+                <Card.Img variant="top" src={`http://localhost:1337${blog.attributes.CoverImg.data[0].attributes.url}`}  />
                 <Card.Body>
                   <Card.Title>{blog.attributes.blogTitle}</Card.Title>
                   <Card.Text>{blog.attributes.blogDesc}</Card.Text>

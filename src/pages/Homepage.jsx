@@ -3,8 +3,7 @@ import { NavSt, Blogs } from "../components";
 import BlogContentPage from "./BlogContentPage";
 
 const Homepage = ({blogs}) => {
-  console.log("Homepage");
-  console.log(blogs);
+
   return (
     <div>
       {" "}
