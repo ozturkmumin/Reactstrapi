@@ -1,55 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
-// Blogları idsi ile birlikte burada oluşturdum
-function BlogContents() {
-  const blogs = [
-    {
-      id: 1,
-      title: "Blog",
-      contentImg: "https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-      alt: "Blog",
-      content: "Content",
-    },
-    {
-      id: 2,
-      title: "Blog1",
-      contentImg: "https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-      alt: "Blog1",
-      content: "Content1",
-    },
-    {
-      id: 3,
-      title: "Blog2",
-      contentImg: "https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-      alt: "Blog2",
-      content: "Content2",
-    },
-  ];
-  const { id } = useParams();
+import useFetch from "../hooks/useFetch";
 
-// useparams ile URL i aldım 
-  const blog = blogs.find((blog) => blog.id.toString() === id.toString());
-// id si denk gelen sayfayı bulmasını sağladım
+function BlogContents() {
+  const { id } = useParams();
+  const [blog, setBlog] = useState(null);
+  const { loading, data, error } = useFetch("http://localhost:1337/api/blogs?populate=*");
+
+  useEffect(() => {
+    if (!loading && data) {
+      // Veri yüklendiğinde, belirtilen ID ile ilgili blogu bulun
+      const foundBlog = data.find((blog) => blog.id.toString() === id.toString());
+      setBlog(foundBlog);
+    }
+  }, [loading, data, id]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error.</p>;
+
+  if (!blog) {
+    return <div>Blog not found</div>;
+  }
+
   return (
     <div>
       <div className="container pt-5">
         <Row>
           <Col lg={8}>
             <div>
-              <img className="mw-100 h-25 w-100" src={blog.contentImg} alt={blog.alt} />
+              <img
+                className="mw-100 h-25 w-100"
+                src={`http://localhost:1337${blog.attributes.CoverImg.data[0].attributes.url}`}
+                alt={blog.alt}
+              />
             </div>
-            <div className="fw-bold">{id}</div>
-            <p className="w-100"> {blog.content}</p>
+            <div className="fw-bold">{blog.attributes.blogTitle}</div>
+            <p className="w-100"> {blog.attributes.blogContent}</p>
           </Col>
           <Col lg={4} sm={6} className="m-lg-0 m-3">
             <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={blog.contentImg} alt={blog.alt} />
+              <Card.Img
+                variant="top"
+                src={`http://localhost:1337${blog.attributes.CoverImg.data[0].attributes.url}`}
+                alt={blog.alt}
+              />
               <Card.Body>
-                <Card.Title>{blog.title}</Card.Title>
-                <Card.Text>{blog.cardContent}</Card.Text>
+                <Card.Title>{blog.attributes.blogTitle}</Card.Title>
+                <Card.Text>{blog.attributes.blogContent}</Card.Text>
                 <Button variant="primary">Go somewhere</Button>
               </Card.Body>
             </Card>
